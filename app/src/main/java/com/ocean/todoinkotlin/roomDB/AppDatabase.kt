@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ocean.todoinkotlin.model.TodoModel
+import com.ocean.todoinkotlin.view.fragment.DB_NAME
 
 @Database(entities = [TodoModel::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
@@ -13,7 +14,6 @@ abstract class AppDatabase : RoomDatabase(){
 
     companion object{
         /** Singleton prevents multiple instances of database opening at the same time */
-
         @Volatile
         private var INSTANCE: AppDatabase ?= null
 
@@ -28,6 +28,8 @@ abstract class AppDatabase : RoomDatabase(){
                     AppDatabase :: class.java,
                     DB_NAME
                 ).build()
+                INSTANCE = instance
+                return instance
             }
         }
 
