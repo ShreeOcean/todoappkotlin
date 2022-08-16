@@ -2,4 +2,11 @@
     <string name="app_name">ToDoInKotlin</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_todo">Add ToDo</string>
+    <string name="spinner_category">spinner category</string>
+    <string name="save_task">Save Task</string>
+    <string name="todo_description">Todo Description:</string>
+    <string name="todo_tittle">Todo Tittle:</string>
+    <string name="set_date">Set Date:</string>
+    <string name="set_time">Set Time:</string>
 </resources>

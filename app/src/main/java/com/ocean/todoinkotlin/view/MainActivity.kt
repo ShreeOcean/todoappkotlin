@@ -18,12 +18,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.floatingActionButton.setOnClickListener(){
+        
+    }
 
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout_for_fragment, AddTODOFragment()).commit()
-            binding.floatingActionButton
-        }
+    fun goToAddToDoFrag(view: View) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout_for_fragment, AddTODOFragment()).commit()
+        binding.faBtnGoAddTodo.isVisible = false
     }
 }
