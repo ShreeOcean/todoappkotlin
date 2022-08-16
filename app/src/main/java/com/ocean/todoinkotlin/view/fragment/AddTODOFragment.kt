@@ -12,6 +12,7 @@ import com.ocean.todoinkotlin.databinding.FragAddTodoBinding
 import com.ocean.todoinkotlin.interfaces.BackPressHandler
 import com.ocean.todoinkotlin.view.MainActivity
 
+const val DB_NAME = "todo.db"
 class AddTODOFragment : Fragment() {
 
     private lateinit var binding: FragAddTodoBinding
