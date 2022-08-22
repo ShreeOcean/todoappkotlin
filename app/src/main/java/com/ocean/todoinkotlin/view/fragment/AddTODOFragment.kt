@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.TimePicker
 import com.ocean.todoinkotlin.databinding.FragAddTodoBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +44,23 @@ class AddTODOFragment : Fragment() {
 
     private fun setTimeListener(){
 
+        myCalender = Calendar.getInstance()
+        setTimeListener = TimePickerDialog.OnTimeSetListener(){  TimePicker, hourOfDay: Int, minute:Int ->
+            myCalender.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            myCalender.set(Calendar.MINUTE, minute)
+            updateTime()
+        }
+        val timePickerDialog =TimePickerDialog(
+            requireContext(),setTimeListener,myCalender.get(Calendar.HOUR_OF_DAY),
+            myCalender.get(Calendar.MINUTE), false)
+        timePickerDialog.show()
+    }
+
+    private fun updateTime() {
+        val myFormat = "h:mm a"
+        val simpleDateFormat = SimpleDateFormat(myFormat)
+        finalTime =myCalender.time.time
+        binding.etTime.setText(simpleDateFormat.format(myCalender.time))
     }
 
     private fun setDateListener() {
