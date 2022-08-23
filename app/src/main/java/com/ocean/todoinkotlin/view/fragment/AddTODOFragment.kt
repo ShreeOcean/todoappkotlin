@@ -3,19 +3,19 @@ package com.ocean.todoinkotlin.view.fragment
 import android.R
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.ocean.todoinkotlin.databinding.FragAddTodoBinding
 import com.ocean.todoinkotlin.model.TodoModel
 import com.ocean.todoinkotlin.roomDB.AppDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.ocean.todoinkotlin.view.MainActivity
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,7 +70,15 @@ class AddTODOFragment : Fragment() {
                         )
                     )
                 }
-//                finish()
+//                finish() --> for activity only
+//                activity?.finish() --> didn't get back to activity instead shutdown the app
+                Toast.makeText(requireContext(), "ToDo added successfully ...", Toast.LENGTH_SHORT).show()
+
+                /** the below code is for how to start activity from fragment in kotlin */
+                activity?.let{
+                    val intent = Intent (it, MainActivity::class.java)
+                    it.startActivity(intent)
+                }
             }
         })
 
@@ -112,8 +120,8 @@ class AddTODOFragment : Fragment() {
                 myCalender.set(Calendar.MONTH, month)
                 myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDate()
-
             }
+
         val datePickerDialog = DatePickerDialog(
             requireContext(), setDateListener, myCalender.get(Calendar.YEAR),
             myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH))
@@ -128,6 +136,7 @@ class AddTODOFragment : Fragment() {
         binding.etDate.setText(simpleDateFormat.format(myCalender.time))
         binding.outlinedTextFieldSetTime.visibility = View.VISIBLE
     }
+
 
 }
 
